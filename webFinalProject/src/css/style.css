@@ -10,17 +10,18 @@
 
 @font-face {
   font-family: 'Nexa-bold';
-  src: url('./src/assets/webfontkit-20221109-144834/nexa_bold-webfont.woff2') format('woff2')
+  src: url('../assets/webfontkit-20221109-144834/nexa_bold-webfont.woff2') format('woff2')
+       
 }
 
 @font-face {
   font-family: 'Nexa-light';
-  src: url('./src/assets/webfontkit-20221109-144834/nexa_light-webfont.woff2') format('woff2');
+  src: url('../assets/webfontkit-20221109-144834/nexa_light-webfont.woff2') format('woff2');
 }
 
 @font-face {
   font-family: 'Nexa-regular';
-  src: url('./src/assets/webfontkit-20221109-144834/nexa_regular-webfont.woff2') format('woff2');
+  src: url('../assets/webfontkit-20221109-144834/nexa_regular-webfont.woff2') format('woff2');
 }
 
 body {
@@ -167,5 +168,5 @@ body {
 }
 
 .how-container img {
-  width: 200px;
+  width: 150px;
 }
