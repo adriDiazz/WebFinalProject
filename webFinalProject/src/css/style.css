@@ -1,0 +1,151 @@
+@import url('/src/css/components.css');
+
+:root {
+  --green-primary: #C3EAD8;
+  --black: #1D191F;
+  --blue: #EEF2FB;
+  --pinky: #F7EBE7;
+  --btnRadius: 40px;
+}
+
+@font-face {
+  font-family: 'Nexa-bold';
+  src: url('/src/assets/webfontkit-20221109-144834/nexa_bold-webfont.woff2') format('woff2')
+}
+
+@font-face {
+  font-family: 'Nexa-light';
+  src: url('/src/assets/webfontkit-20221109-144834/nexa_light-webfont.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Nexa-regular';
+  src: url('/src/assets/webfontkit-20221109-144834/nexa_regular-webfont.woff2') format('woff2');
+}
+
+body {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.top-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: auto;
+  height: 10vh;
+  gap: 4rem;
+  background-color: var(--green-primary);
+}
+
+
+.nav-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+  
+}
+
+.nav-logo-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-logo-container h1 {
+  font-family: 'Nexa-bold';
+  color: var(--black);
+  font-size: 32px;
+}
+
+.nav-container img {
+  width: 70px;
+  
+}
+
+.nav-link-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 4px;
+}
+
+.nav-link-container a {
+  text-decoration: none;
+  color: #000;
+  font-size: 1rem;
+  font-family: 'Nexa-light';
+  cursor: pointer;
+}
+
+.nav-btn-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+
+
+.header-top-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 60vh;
+  background-color: var(--green-primary);
+  
+  flex-wrap: wrap;
+}
+
+.header-title-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 100%;
+}
+
+.header-title-container h1 {
+  font-family: 'Nexa-bold';
+  font-size: 3.375rem;
+  color: var(--black);
+}
+
+
+.title-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 1rem;
+  width: 100%;
+  height: 100%;
+}
+
+
+.title-container span {
+  font-family: 'Nexa-light';
+  font-size: 0.8rem;
+  color: var(--black);
+  
+}
+
+.header-img-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.header-img-container img{
+  width: 300px;
+}

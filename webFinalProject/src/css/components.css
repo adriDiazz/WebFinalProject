@@ -1,0 +1,25 @@
+.btn-black {
+    background-color: var(--black);
+    color: #fff;
+    border: none;
+    border-radius: var(--btnRadius);
+    padding: 0.5rem 1rem;
+    font-family: 'Nexa-light';
+    font-size: 0.8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+  }
+  
+  .btn {
+    background-color: transparent;
+    color: #000;
+    border: none;
+    border-radius: var(--btnRadius);
+    padding: 0.5rem 1rem;
+    font-family: 'Nexa-light';
+    font-size: 0.8rem;
+    cursor: pointer;
+  }
