@@ -1,4 +1,4 @@
-@import url('/src/css/components.css');
+@import url('./components.css');
 
 :root {
   --green-primary: #C3EAD8;
@@ -10,17 +10,17 @@
 
 @font-face {
   font-family: 'Nexa-bold';
-  src: url('/src/assets/webfontkit-20221109-144834/nexa_bold-webfont.woff2') format('woff2')
+  src: url('./src/assets/webfontkit-20221109-144834/nexa_bold-webfont.woff2') format('woff2')
 }
 
 @font-face {
   font-family: 'Nexa-light';
-  src: url('/src/assets/webfontkit-20221109-144834/nexa_light-webfont.woff2') format('woff2');
+  src: url('./src/assets/webfontkit-20221109-144834/nexa_light-webfont.woff2') format('woff2');
 }
 
 @font-face {
   font-family: 'Nexa-regular';
-  src: url('/src/assets/webfontkit-20221109-144834/nexa_regular-webfont.woff2') format('woff2');
+  src: url('./src/assets/webfontkit-20221109-144834/nexa_regular-webfont.woff2') format('woff2');
 }
 
 body {
@@ -92,16 +92,14 @@ body {
 }
 
 
-
 .header-top-container {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  height: 60vh;
+  width: auto;
+   height: 60vh; /*change to auto when media query is added */
   background-color: var(--green-primary);
-  
   flex-wrap: wrap;
 }
 
@@ -148,4 +146,26 @@ body {
 
 .header-img-container img{
   width: 300px;
+}
+
+.how-top-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.how-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.how-container img {
+  width: 200px;
 }

@@ -1,3 +1,11 @@
+h1 {
+    font-family: 'Nexa-bold';
+}
+
+h2 {
+    font-family: 'Nexa-regular';
+}
+
 .btn-black {
     background-color: var(--black);
     color: #fff;
