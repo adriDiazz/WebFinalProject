@@ -3,7 +3,7 @@ h1 {
 }
 
 h2 {
-    font-family: 'Nexa-regular';
+    font-family: 'Nexa-light';
 }
 
 p {
@@ -29,6 +29,17 @@ p {
     background-color: transparent;
     color: #000;
     border: none;
+    border-radius: var(--btnRadius);
+    padding: 0.5rem 1rem;
+    font-family: 'Nexa-light';
+    font-size: 0.8rem;
+    cursor: pointer;
+  }
+
+  .btn-transparent {
+    background-color: transparent;
+    color: #000;
+    border: 1px solid #000;
     border-radius: var(--btnRadius);
     padding: 0.5rem 1rem;
     font-family: 'Nexa-light';
