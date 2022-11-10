@@ -193,7 +193,7 @@ body {
 }
 
 .info-top-container {
-  width: 100%;
+  width: 50%;
   height: 600px;
 }
 
@@ -202,7 +202,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 2rem;
+  gap: 5rem;
   width: auto;
   height: auto;
   margin-top: 10rem;
@@ -219,6 +219,23 @@ body {
   gap: 6rem;
   flex-wrap: wrap;
 }
+
+.reverse{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  height: auto;
+  background-color: var(--blue);
+  border-radius: 20px;
+  gap: 9rem;
+  flex-wrap: wrap;
+}
+
+.reverse img{
+  padding-left: 2rem;
+}
+
 
 .info-card-container img {
   width: 400px;
@@ -237,6 +254,10 @@ body {
 
 .text-card-container h2 {
   font-size: 2rem;
+}
+
+.text-max-content {
+  width: max-content;
 }
 
 .pinky {
