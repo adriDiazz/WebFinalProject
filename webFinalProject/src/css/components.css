@@ -6,6 +6,10 @@ h2 {
     font-family: 'Nexa-regular';
 }
 
+p {
+    font-family: 'Nexa-light';
+}
+
 .btn-black {
     background-color: var(--black);
     color: #fff;
