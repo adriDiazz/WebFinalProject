@@ -1,4 +1,6 @@
 @import url('./components.css');
+@import url('./clubes.css');
+
 
 :root {
   --green-primary: #C3EAD8;
@@ -323,5 +325,72 @@ body {
   align-items: center;
 }
 
-/* dddadsadsadsad */
+/* Login Modal*/
 
+.login-modal-top-container {
+  display: none; 
+  position: fixed; 
+  z-index: 1; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto; 
+  background-color: rgb(0,0,0); 
+  background-color: rgba(0,0,0,0.4); 
+}
+
+.modal-container {
+  background-color: var(--white);
+  margin: 10% auto; 
+  padding: 20px;
+  border: 1px solid #888;
+  width: 50%; 
+  border-radius: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  padding: 4rem;
+  flex-wrap: wrap;
+}
+
+.login-logo-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-logo-container img {
+  width: 100px;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+.text-login-container {
+  width: 20%;
+}
+
+.form-container input {
+  width: 20rem;
+  height: 1.5rem;
+  border-radius: 20px;
+  border: 2px solid var(--blue);
+  padding: 0.5rem;
+}
+
+.form-container h1 {
+  font-size: 2rem;
+  margin-right: 2rem;
+}
+
+.close {
+  display: none;
+}
