@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Cluby</title>
     <link rel="stylesheet" href="../css/home.css">
 </head>
 <body>
@@ -17,19 +17,19 @@
                     <form action="" class="form-container">
                         <input type="text" name="name" id="name" placeholder="Club name" class="name"/>
                         <input type="text" name="discord" id="discord" placeholder="Discord link" class="discord"/>
-                        <textarea name="description" id="description" cols="30" rows="10" placeholder="Description"></textarea>
+                        <textarea name="description" id="description" cols="30" rows="10" placeholder="Description" class="description"></textarea>
                         <!-- <button type="submit" class="btn-black loginModal">Create</button> -->
                     </form>
                 </div>
                 <div class="modal-select">
-                    <p>Select a banner</p>
-                    <div class="banners">
-                        <img src="../assets/marek-piwnicki-qZbvW30BOkw-unsplash.jpg" alt="">
-                        <img src="../assets/marek-piwnicki-qZbvW30BOkw-unsplash.jpg" alt="">
-                        <img src="../assets/marek-piwnicki-qZbvW30BOkw-unsplash.jpg" alt="">
+                    <p>Select a club logo</p>
+                    <div class="profiles">
+                        <img src="https://api.multiavatar.com/4645646.svg" alt="" class="profileImg">
+                        <img src="https://api.multiavatar.com/4645646.svg" alt="profileImg" class="profileImg">
+                        <img src="https://api.multiavatar.com/4645646.svg" alt="profileImg" class="profileImg">
                     </div>
                     <div class="btn-container">
-                        <button type="submit" class="btn-black loginModal">Create</button>
+                        <button type="submit" class="btn-black loginModal createBtn">Create</button>
                     </div>
                 </div>
             </div>
@@ -50,7 +50,7 @@
             </div>
         </nav>
 
-        <section>
+        <section class="section">
             <div class="clubs-section-container">
                 <div class="myclubs-container">
                     <h2>My clubs</h2>
@@ -60,7 +60,7 @@
                 </div>
                 <div class="myclubs-container">
                     <h2>Joined clubs</h2>
-                    <div class="myclubs-clubs-contaiener">
+                    <div class="joined-clubs-contaiener">
                         <p>Not joined a club yet</p>
                     </div>
                 </div>
@@ -72,7 +72,7 @@
                     <div class="club-container"> 
                         <!-- main-club-container -->
                         <h2>Select a club or crate a new one</h2>
-                    </div>
+                    </div>  
             </div>
         </section>
     </div>

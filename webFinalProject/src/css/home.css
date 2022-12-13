@@ -51,7 +51,7 @@
     margin: 10% auto; 
     padding: 20px;
     border: 1px solid #888;
-    width: 50%; 
+    width: max-content; 
     border-radius: 20px;
     padding: 4rem;
     flex-wrap: wrap;
@@ -75,7 +75,7 @@
 
   .form-container textarea {
     width: 20rem;
-    height: 5rem;
+    height: 10rem;
     border-radius: 20px;
     border: 2px solid var(--blue);
     padding: 0.5rem;
@@ -86,7 +86,7 @@
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
-    gap: 15rem;
+    gap: 2rem;
   }
 
   .banners {
@@ -94,7 +94,7 @@
     justify-content: center;
     align-items: center;
     gap: 1rem;
-    margin-bottom: 7rem;
+    margin-bottom: 2rem;
   }
 
   .banners img {
@@ -102,6 +102,24 @@
     height: 80px;
   }
 
+  .profiles {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 9rem;
+  }
+
+  .profiles img {
+    width: 100px;
+    cursor: pointer;
+  }
+
+  .selected {
+    border: 2px solid #4286f4;
+    border-radius: 50%;
+  }
+  
   .btn-container {
     display: flex;
     justify-content: flex-end;
@@ -175,11 +193,16 @@
     border-radius: 20px;
     padding: 0.1rem;
     width: 10rem;
+    cursor: pointer;
+  }
+
+  .myclub:hover {
+    background-color: #0000001f;
   }
 
   .main-club-container {
     overflow-y: scroll;
-    height: 100vh;
+   
   }
 
   .no {
@@ -194,8 +217,68 @@
     height: 100vh;
   }
 
+  .nos {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: flex-start;
+    gap: 1rem;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .ch {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-top: 1rem;
+    padding: 0.1rem;
+    width: 70vw;
+    height: 100vh;
+  }
+
+
+
+  .chat-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    height: 80vh;
+    padding-left: 2rem;
+
+  }
+
+  .input-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 2rem;
+    gap: 2rem;
+  }
+
+  .input-container input {
+    width: 20rem;
+    height: 1.5rem;
+    border-radius: 20px;
+    border: 2px solid var(--blue);
+    padding: 0.5rem;
+  }
+
+  .btn-info-container {
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    padding: 1rem;
+  }
+
   .club-container {
     overflow: scroll;
+    
   }
 
 
@@ -208,6 +291,7 @@
 
   .club-container p {
     width: 50%;
+    
   }
 
   .club-info-container {
@@ -277,4 +361,68 @@
   .role {
     font-size: 0.6rem;
     color: #00000080;
+  }
+
+
+  @media only screen and (max-width: 480px) {
+
+    .section {
+      display:none;
+      width: 100%;
+    }
+
+    .active {
+      display: flex;
+    }
+
+    .no {
+      width: 100%;
+    }
+
+    .members-top-container {
+      display: none;
+    }
+
+    .nos {
+      width: 76vw;
+    }
+
+    .club-container {
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .modal-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      width: 70vw;
+      padding: 3rem;
+    }
+
+    .modal-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 0;
+    }
+
+    .modal-form input {
+      width: 14rem;
+    }
+
+    .modal-form textarea {
+      width: 14rem;
+    }
+
+    .modal-select {
+      width: 14rem;
+    }
+
+    .profiles img {
+      width: 4rem;
+      height: 4rem;
+    }
   }

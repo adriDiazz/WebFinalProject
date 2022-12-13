@@ -29,7 +29,13 @@ auth.onAuthStateChanged((user) => {
                 console.log(error)
             })
         })
-        window.location = '../pages/homePage.html';
+
+
+        
+        setTimeout(() => {
+            window.location = '../pages/homePage.html';
+        }, 1000)
+        
     } else {
         console.log('no user')
         btnContainer.innerHTML = `
@@ -37,8 +43,16 @@ auth.onAuthStateChanged((user) => {
         <button class="btn-black sing-up">Sign up <img src="./assets/addUser.svg" alt="add user icon"></button>
         `
         modal();
+
+        const navMobileToggle = document.querySelector('.fa');
+
+        navMobileToggle.addEventListener('click', () => {
+            const navMobile = document.querySelector('.mobile-nav-container');
+            navMobile.classList.toggle('active');
+        })
     }
 });
+
 
 
 

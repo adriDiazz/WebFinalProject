@@ -34,6 +34,8 @@ body {
   background-color: var(--white);
 }
 
+
+
 .top-container {
   display: flex;
   justify-content: space-around;
@@ -294,6 +296,8 @@ body {
   display: flex;
   justify-content: space-around;
   align-items: center;
+  flex-wrap: wrap;
+
 }
 
 .logo-footer-container {
@@ -316,6 +320,8 @@ body {
   justify-content: center;
   align-items: flex-start;
   gap: 3rem;
+  flex-wrap: wrap;
+
 }
 
 .legal-down-container {
@@ -376,6 +382,7 @@ body {
 
 .text-login-container {
   width: 20%;
+
 }
 
 .form-container input {
@@ -393,4 +400,106 @@ body {
 
 .close {
   display: none;
+}
+
+/* media queries */
+
+@media only screen and (max-width: 480px) {
+  .header-top-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: auto; /*change to auto when media query is added */
+    background-color: var(--green-primary);
+    flex-wrap: wrap;
+  }
+
+  .nav-link-container {
+    display: none;
+  }
+
+  .nav-btn-container {
+    display: none;
+  }
+
+  .footer-top-container {
+    height: auto;
+    flex-direction: column;
+  }
+
+  .legal-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .text-max-content {
+    width: 100%;
+  }
+
+  .info-card-container {
+    gap: 1rem;
+  }
+
+  .info-title-container {
+    width: 80%;
+  }
+
+  .top-container {
+
+  }
+
+  .mobile-nav-container {
+    display: none;
+  }
+
+  .active {
+    display: flex;
+  }
+
+  .header-top-container {
+
+    justify-content: flex-start;
+    padding: 2rem;
+    gap: 1rem;
+
+  }
+
+  .text-login-container {
+    width: 20%;
+    padding: 2rem;
+
+  }
+
+  .text-login-container h1{
+    width: 230px;
+  }
+
+  .text-login-container p{
+    width: 200px;
+  }
+
+  .social-media-container {
+    display: flex;
+  }
+
+  .modal-container {
+    width: 95%;
+    justify-content: flex-start;
+    padding: 0;
+  }
+
+  .form-login-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem;
+  }
+
 }
