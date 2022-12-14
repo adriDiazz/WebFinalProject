@@ -1,0 +1,9 @@
+1. Ejecutar el comando:
+    npm install 
+    
+Para instalar todas las dependencias del proyecto.
+
+2. Para arrancar la aplicacion, debemos introducir el siguente comando en la terminal: 
+    npm run dev
+
+Esto comenzara el servidor de desarrollo localmente.
