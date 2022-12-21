@@ -124,6 +124,7 @@
     align-items: space-around;
     gap: 1rem;
     margin-left: 4rem;
+    padding-top: 2rem;
     
 }
 
@@ -144,7 +145,7 @@
     justify-content: center;
     align-items: center;
     padding: 1rem;
-    width: 100px;
+    width: 75px;
 }
 
 .category img {
@@ -236,6 +237,7 @@
     display: flex;
     flex-direction: row;
     align-items: flex-start;
+
 }
 
 
@@ -246,7 +248,7 @@
     justify-content: center;
     align-items: center;
     gap: 1rem;
-    margin-left: 4rem;
+    margin-left: 0rem;
 }
 
 .top-clubs-container {
@@ -258,6 +260,8 @@
     margin-top: 4px;
     border-radius: 20px;
     width: 80%;
+    margin-right: 5rem;
+
 }
 
 .top-clubs {
@@ -283,6 +287,20 @@
 .texxt img {
     width: 40px;
     height: 40px;
+}
+
+.item {
+  display: flex;
+  flex-direction: center;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  width: 20rem;
+  gap: 1rem;
+}
+
+.text-club-container {
+   width: 100%;
 }
 
 .nav-left {

@@ -7,3 +7,11 @@ Para instalar todas las dependencias del proyecto.
     npm run dev
 
 Esto comenzara el servidor de desarrollo localmente.
+
+
+Para iniciar sesion en la web introducir dentro de la pestaña Log In:
+
+    Email:creando@gmail.com
+    Contrasena:Peseta12
+
+o crear una nueva cuenta desde la pestana Sing Up
