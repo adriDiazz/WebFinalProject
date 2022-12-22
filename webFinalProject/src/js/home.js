@@ -1,6 +1,6 @@
 import { auth } from "./firebase";
 import { signOut } from "firebase/auth";
-import { addClub } from "./services"
+import { addClub, editClub } from "./services"
 import { getCreatedClubs, getJoinedClubs, getRandomProfile , getClubUsers} from "./services"
 
 
@@ -80,11 +80,15 @@ auth.onAuthStateChanged((user) => {
                         infoBtn.addEventListener('click', () => {
                             clubContainer.innerHTML = `
                             <div class="content-container">
+                            
                                 <div class="club-info-container">
+                                    <div class="btn-info-container">
+                                        <button class="btn-black edit-btn">Edit</button>
+                                    </div>
                                     <h2>${club.name}</h2>
                                     <p>${club.description}</p>
                                     <h2>Where we meet?</h2>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam reiciendis quaerat eaque earum. Delectus earum sint modi impedit non perspiciatis placeat laboriosam, debitis id quia culpa? Vero voluptate dolores non!</p>
+                                    <p>${club.meet}</p>
                                     <h2>When we meet?</h2>
                                     <p>Monday: 16</p>
                                     <p>Tuesday: 16</p>
@@ -94,15 +98,55 @@ auth.onAuthStateChanged((user) => {
                                 </div>
                             <div/>
                             `
-
+                            const editBtn = document.querySelector('.edit-btn')
+                            editBtn.addEventListener('click', () => {
+                                clubContainer.innerHTML = `
+                                <div class="form-container editable">
+                                    <form class="edit-form">
+                                            <label for="cname">Club name:</label><br>
+                                            <input type="text" id="cname" name="cname"><br>
+                                            <label for="cdescription">Club description:</label><br>
+                                            <textarea id="cdescription" name="cdescription"></textarea>
+                                            <label for="cmeet">Where we meet?</label><br>
+                                            <textarea id="cmeet" name="cmeet"></textarea>
+                                            <label for="cdiscord">Discord:</label><br>
+                                            <input type="text" id="cdiscord" name="cdiscord"><br>
+                                            <button type="button" class="btn-black put-edit-btn">Edit</button>
+                                    </form>                                    
+                                </div>
+                                `
+                                const putEditBtn = document.querySelector('.put-edit-btn')
+                                console.log(document.querySelector('#cdescription').value)
+                                putEditBtn.addEventListener('click', () => {
+                                    let clubName = document.querySelector('#cname').value
+                                    let clubDescription = document.querySelector('#cdescription').value
+                                    let clubMeet = document.querySelector('#cmeet').value
+                                    let clubDiscord = document.querySelector('#cdiscord').value
+                                    clubName === '' ? clubName = club.name : ''
+                                    clubDescription === '' ? clubDescription = club.description : ''
+                                    clubMeet === '' ? clubMeet = club.meet : ''
+                                    clubDiscord === '' ? clubDiscord = club.discord : '' 
+                                    const editedClub = {
+                                        id: club.id,
+                                        name: clubName,
+                                        description: clubDescription,
+                                        meet: clubMeet,
+                                        discord: clubDiscord,
+                                    }
+                                    const editedClubResult = editClub(editedClub, auth.currentUser.uid)
+                                    if (editedClubResult) {
+                                        alert('Club edited')
+                                        window.location.reload()
+                                    }
+                                })
+                            })
                         })
                     })
                     const section = document.querySelector('.section')
                     section.classList.remove('active')
 
                 })
-
-
+                
             })
            
         })

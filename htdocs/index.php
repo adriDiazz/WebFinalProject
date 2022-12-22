@@ -18,8 +18,8 @@
         exit;
     } 
 
-    $dsn = "mysql:host=localhost;dbname=cluby;charset=utf8mb4";
-    $pdo = new PDO($dsn, "root", "root", [
+    $dsn = "mysql:host=localhost;port=4306;dbname=cluby;charset=utf8mb4";
+    $pdo = new PDO($dsn, "root", "", [
         PDO::ATTR_EMULATE_PREPARES => false,
         PDO::ATTR_STRINGIFY_FETCHES => false
     ]);

@@ -7,6 +7,11 @@ export const addClub = async(club, id, username) => {
     return response2.status === 201
 }   
 
+export const editClub = async(club, id) => {
+    const response = await axios.put("http://localhost/products", club)
+    return response.status === 201
+}   
+
 export const getRandomProfile = () => {
     const randomNum = Math.floor(Math.random() * 10000000)
     return `https://api.multiavatar.com/${randomNum}.svg`
@@ -14,6 +19,7 @@ export const getRandomProfile = () => {
 
 export const getCreatedClubs = async(id) => {
     const response = await axios.get("http://localhost/products")
+    console.log(response)
     return response.data.filter(club => club.creator === id)
 }
 

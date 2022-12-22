@@ -34,6 +34,9 @@
                 case 'POST':
                     $this->create();
                     break;
+                case 'PUT':
+                    $this->update();
+                    break;
             }
         }
 
@@ -66,6 +69,24 @@
                 ':urlBanner' => $data['urlBanner'],
                 ':creator' => $data['creator'],
                 ':created_at' => $data['created_at'],
+            ]);
+            $id = $this->db->lastInsertId();
+            if ($id) {
+                http_response_code(201);
+                echo json_encode(['id' => $id]);
+            }
+        }
+
+        public function update() {
+            $data = json_decode(file_get_contents('php://input'), true);
+            $sql = "UPDATE clubs SET name = :name, description = :description, meet = :meet, discord = :discord WHERE id = :id";
+            $stmt = $this->db->prepare($sql);
+            $stmt->execute([
+                ':id' => $data['id'],
+                ':name' => $data['name'],
+                ':description' => $data['description'],
+                ':meet' => $data['meet'],
+                ':discord' => $data['discord'],
             ]);
             $id = $this->db->lastInsertId();
             if ($id) {
