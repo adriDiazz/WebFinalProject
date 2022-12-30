@@ -23,12 +23,27 @@ auth.onAuthStateChanged((user) => {
             clubs.length > 0 ? clubsContainer.innerHTML = html : clubsContainer.innerHTML = `<p>You have not created any clubs yet</p>`
 
             const myclubBtns = document.querySelectorAll('.myclub');
+            const myclubBtns2 = document.querySelectorAll('.joinedClub');
             myclubBtns.forEach((btn) => {
                 btn.addEventListener('click', () => {
                     
                     const club = clubs.find((club) => club.name === btn.innerText)
 
-                    console.log(club.id)
+                    btn.classList.add('selectedBtn')
+
+                    myclubBtns.forEach((button) => {
+                        if(button !== btn){
+                            button.classList.remove('selectedBtn')
+                        }
+
+
+                        myclubBtns2.forEach((button) => {
+                            if (button.classList.contains('selectedBtn')) {
+                                button.classList.remove('selectedBtn')
+                            }
+                        })
+                    })
+
 
                     no.classList.add('nos')
                     no.classList.remove('no')
@@ -85,16 +100,16 @@ auth.onAuthStateChanged((user) => {
                                     <div class="btn-info-container">
                                         <button class="btn-black edit-btn">Edit</button>
                                     </div>
-                                    <h2>${club.name}</h2>
+                                    <h2 class="title">${club.name}</h2>
                                     <p>${club.description}</p>
-                                    <h2>Where we meet?</h2>
+                                    <h3>Where we meet?</h3>
                                     <p>${club.meet}</p>
-                                    <h2>When we meet?</h2>
+                                    <h3>When we meet?</h3>
                                     <p>Monday: 16</p>
                                     <p>Tuesday: 16</p>
                                     <p>Wednesday: 16</p>
-                                    <h2>Discord</h2>
-                                    <p>${club.discord}</p>
+                                    <h3>Discord</h3>
+                                    <a href="${club.discord}" class="a2" target=”_blank”>${club.discord}</a>
                                 </div>
                             <div/>
                             `
@@ -102,15 +117,12 @@ auth.onAuthStateChanged((user) => {
                             editBtn.addEventListener('click', () => {
                                 clubContainer.innerHTML = `
                                 <div class="form-container editable">
+                                    <h2>Edit club</h2>
                                     <form class="edit-form">
-                                            <label for="cname">Club name:</label><br>
-                                            <input type="text" id="cname" name="cname"><br>
-                                            <label for="cdescription">Club description:</label><br>
-                                            <textarea id="cdescription" name="cdescription"></textarea>
-                                            <label for="cmeet">Where we meet?</label><br>
-                                            <textarea id="cmeet" name="cmeet"></textarea>
-                                            <label for="cdiscord">Discord:</label><br>
-                                            <input type="text" id="cdiscord" name="cdiscord"><br>
+                                            <label for="cname" class="label"><input type="text" id="cname" name="cname" placeholder="Club name"></label>
+                                            <label for="cdescription" class="label"><textarea id="cdescription" name="cdescription" placeholder="Description"></textarea></label>
+                                            <label for="cmeet" class="label"><textarea id="cmeet" name="cmeet" placeholder="Where we meet?"></textarea></label>
+                                            <label for="cdiscord" class="label"><input type="text" id="cdiscord" name="cdiscord" placeholder="Discord"></label>
                                             <button type="button" class="btn-black put-edit-btn">Edit</button>
                                     </form>                                    
                                 </div>
@@ -172,12 +184,30 @@ auth.onAuthStateChanged((user) => {
 
             clubs.length > 0 ? joinedClubsContainer.innerHTML = html : joinedClubsContainer.innerHTML = `<p>You have not joined any clubs yet</p>`
 
+            const myclubBtns2 = document.querySelectorAll('.myclub')
             const myclubBtns = document.querySelectorAll('.joinedClub')
             myclubBtns.forEach((btn) => {
                 btn.addEventListener('click', () => {
                     
                     const club = clubs.find((club) => club.name === btn.innerText)
 
+                    
+
+                    myclubBtns.forEach((button) => {
+                        if(button.classList.contains('selectedBtn')){
+                            button.classList.remove('selectedBtn')
+                        }
+
+                        btn.classList.add('selectedBtn')
+
+
+
+                        myclubBtns2.forEach((button) => {
+                            if (button.classList.contains('selectedBtn')) {
+                                button.classList.remove('selectedBtn')
+                            }
+                        })
+                    })
 
 
                     no.classList.add('nos')
@@ -231,19 +261,65 @@ auth.onAuthStateChanged((user) => {
                             clubContainer.innerHTML = `
                             <div class="content-container">
                                 <div class="club-info-container">
-                                    <h2>${club.name}</h2>
+                                    <div class="btn-info-container">
+                                        <button class="btn-black edit-btn">Edit</button>
+                                    </div>
+                                    <h2 class="title">${club.name}</h2>
                                     <p>${club.description}</p>
-                                    <h2>Where we meet?</h2>
+                                    <h3>Where we meet?</h3>
                                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam reiciendis quaerat eaque earum. Delectus earum sint modi impedit non perspiciatis placeat laboriosam, debitis id quia culpa? Vero voluptate dolores non!</p>
-                                    <h2>When we meet?</h2>
+                                    <h3>When we meet?</h3>
                                     <p>Monday: 16</p>
                                     <p>Tuesday: 16</p>
                                     <p>Wednesday: 16</p>
-                                    <h2>Discord</h2>
-                                    <p>${club.discord}</p>
+                                    <h3>Discord</h3>
+                                    <a href="${club.discord}" class="a2" target=”_blank”>${club.discord}</a>
                                 </div>
                             <div/>
                             `
+
+                            const editBtn = document.querySelector('.edit-btn')
+                            editBtn.addEventListener('click', () => {
+                                clubContainer.innerHTML = `
+                                <div class="form-container editable">
+                                    <h2>Edit club</h2>
+                                    <form class="edit-form">
+                                            <label for="cname" class="label"><input type="text" id="cname" name="cname" placeholder="Club name"></label>
+                                            <label for="cdescription" class="label"><textarea id="cdescription" name="cdescription" placeholder="Description"></textarea></label>
+                                            <label for="cmeet" class="label"><textarea id="cmeet" name="cmeet" placeholder="Where we meet?"></textarea></label>
+                                            <label for="cdiscord" class="label"><input type="text" id="cdiscord" name="cdiscord" placeholder="Discord"></label>
+                                            <button type="button" class="btn-black put-edit-btn">Edit</button>
+                                    </form>                                    
+                                </div>
+                                `
+
+                                const putEditBtn = document.querySelector('.put-edit-btn')
+                                console.log(document.querySelector('#cdescription').value)
+                                putEditBtn.addEventListener('click', () => {
+                                    let clubName = document.querySelector('#cname').value
+                                    let clubDescription = document.querySelector('#cdescription').value
+                                    let clubMeet = document.querySelector('#cmeet').value
+                                    let clubDiscord = document.querySelector('#cdiscord').value
+                                    clubName === '' ? clubName = club.name : ''
+                                    clubDescription === '' ? clubDescription = club.description : ''
+                                    clubMeet === '' ? clubMeet = club.meet : ''
+                                    clubDiscord === '' ? clubDiscord = club.discord : '' 
+                                    const editedClub = {
+                                        id: club.id,
+                                        name: clubName,
+                                        description: clubDescription,
+                                        meet: clubMeet,
+                                        discord: clubDiscord,
+                                    }
+                                    const editedClubResult = editClub(editedClub, auth.currentUser.uid)
+                                    if (editedClubResult) {
+                                        alert('Club edited')
+                                        window.location.reload()
+                                    }
+                                })
+
+                            })
+                            
                         })
                     })
 

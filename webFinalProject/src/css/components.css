@@ -21,6 +21,14 @@ a {
     font-family: 'Nexa-light';
     cursor: pointer;
 }
+
+a2 {
+    text-decoration: none;
+    color: #3366BB;
+    font-size: 1rem;
+    font-family: 'Nexa-light';
+    cursor: pointer;
+}
 .btn-black {
     background-color: var(--black);
     color: #fff;
