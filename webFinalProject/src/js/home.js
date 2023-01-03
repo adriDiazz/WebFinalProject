@@ -116,9 +116,9 @@ auth.onAuthStateChanged((user) => {
                             const editBtn = document.querySelector('.edit-btn')
                             editBtn.addEventListener('click', () => {
                                 clubContainer.innerHTML = `
-                                <div class="form-container editable">
+                                <div class="form-container2 editable">
                                     <h2>Edit club</h2>
-                                    <form class="edit-form">
+                                    <form class="edit-form2">
                                             <label for="cname" class="label"><input type="text" id="cname" name="cname" placeholder="Club name"></label>
                                             <label for="cdescription" class="label"><textarea id="cdescription" name="cdescription" placeholder="Description"></textarea></label>
                                             <label for="cmeet" class="label"><textarea id="cmeet" name="cmeet" placeholder="Where we meet?"></textarea></label>

@@ -63,6 +63,17 @@
     justify-content: flex-start;
     align-items: flex-start;
     gap: 1rem;
+    width: 20vw;
+    padding-left: 2rem;
+    padding-top: 2rem;
+  }
+
+  .form-container2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 1rem;
     width: 60vw;
     padding-left: 2rem;
     padding-top: 2rem;
@@ -82,6 +93,16 @@
 
   
   .edit-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 1rem;
+    width: 100%;
+    position: relative;
+  }
+
+  .edit-form2 {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;

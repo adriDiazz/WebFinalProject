@@ -1,7 +1,7 @@
 import { auth } from "./firebase";
 import { signOut } from "firebase/auth";
 import { imgs } from "./constants";
-import { getAllClubs, getCategories, getClubById, getMostPopularClubs, getUsernameById } from "./services";
+import { getAllClubs, getCategories, getClubById, getMostPopularClubs, getUsernameById, getRandomProfile} from "./services";
 
 
 auth.onAuthStateChanged((user) => {
@@ -90,6 +90,115 @@ auth.onAuthStateChanged((user) => {
     }
 });
 
+const btnLogOut = document.querySelector('.logoutBtn');
+
+btnLogOut.addEventListener('click', () => {
+    signOut(auth).then(() => {
+        console.log('user signed out')
+        window.location = '../../index.html';
+    }).catch((error) => {
+        console.log(error)
+    })
+})
+
+const searchBtn = document.querySelector('.clubesPage');
+
+searchBtn.addEventListener('click', () => {
+    window.location = '../pages/clubPage.html';
+});
+
+const homeBtn = document.querySelector('.homePage');
+
+homeBtn.addEventListener('click', () => {
+    // const section = document.querySelector('.section')
+    // section.classList.toggle('active')
+    window.location = '../pages/homePage.html';
+})
+
+const profileBtn = document.querySelector('.profilePage');
+
+profileBtn.addEventListener('click', () => {
+    window.location = '../pages/profilePage.html';
+})
 
 
+const modal = document.querySelector('.add-modal-top-container')
+const modalOpen = document.querySelector('.addPage')
+
+let profileImg
+
+modalOpen.addEventListener('click', () => {
+    modal.style.display = 'block'
+    const profiles = document.querySelector('.profiles')
+    const randomProfile1 = getRandomProfile();
+    const randomProfile2 = getRandomProfile();
+    const randomProfile3 = getRandomProfile();
+    
+    profiles.innerHTML = `
+    <img src="${randomProfile1}" alt="" class="profileImg">
+    <img src="${randomProfile2}" alt="" class="profileImg">
+    <img src="${randomProfile3}" alt="" class="profileImg">
+    `
+
+    const profileImgs = document.querySelectorAll('.profileImg')
+    profileImgs.forEach((img, index) => {
+        img.addEventListener('click', () => {
+            profileImg = img.getAttribute('src')
+            console.log(profileImg)
+            if(profileImgs[index].classList.contains('selected')){
+                profileImgs[index].classList.remove('selected')
+            }
+            else{
+                profileImgs.forEach(img => {
+                    img.classList.remove('selected')
+                })
+                profileImgs[index].classList.add('selected')
+            }
+
+        })
+    })
+})
+
+window.addEventListener('click', (e) => {
+    if (e.target === modal) {
+        modal.style.display = 'none'
+    }
+})
+
+
+
+//ADD MODAL LOGIC
+
+const nameInput = document.querySelector('.name')
+const descriptionInput = document.querySelector('.description')
+const discordInput = document.querySelector('.discord')
+const createBtn = document.querySelector('.createBtn')
+
+createBtn.addEventListener('click', () => {
+    const name = nameInput.value
+    const description = descriptionInput.value
+    const discord = discordInput.value
+    const banner = profileImg 
+
+    if (name === '' || description === '' || discord === '' || banner === undefined) {
+        alert('Please fill in all fields')
+    } else {
+
+        const club = {
+            name,
+            description,
+            discord,
+            urlBanner : banner,
+            creator : auth.currentUser.uid,
+            createdAt : new Date()
+        }
+
+        const saveClub = addClub(club, auth.currentUser.uid, "username")
+        if (saveClub) {
+            alert('Club created')
+            modal.style.display = 'none'
+            window.location.reload()
+        }
+    }
+})
 
