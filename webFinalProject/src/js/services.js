@@ -19,7 +19,6 @@ export const getRandomProfile = () => {
 
 export const getCreatedClubs = async(id) => {
     const response = await axios.get("http://localhost/products")
-    console.log(response)
     return response.data.filter(club => club.creator === id)
 }
 
@@ -59,4 +58,42 @@ export const getClubUsers = async(id) => {
     const usersResponse = await axios.get("http://localhost/users")
     const users = usersResponse.data
     return users.filter(user => clubUsers.includes(user.id))
+}
+
+export const getCategories = async() => {
+    const response = await axios.get("http://localhost/category")
+    return response.data
+}
+
+export const getMostPopularClubs = async() => {
+    const response = await axios.get("http://localhost/userclub")
+    let answ = {}
+    response.data.forEach((dato) => {
+        if(!Object.keys(answ).includes(String(dato.club_id))) {
+            answ[dato.club_id] = 1
+        }else{
+            answ[dato.club_id] = answ[dato.club_id] + 1
+        }
+    })
+    const sortable = Object.entries(answ)
+    sortable.sort(function(a, b) {
+        return b[1] - a[1];
+    });
+    return sortable
+    
+}
+
+export const getClubById = async(clubId) => {
+    const response = await axios.get("http://localhost/products")
+    return response.data.filter(club => club.id === clubId)
+}
+
+export const getAllClubs = async() => {
+    const response = await axios.get("http://localhost/products")
+    return response.data
+}
+
+export const getUsernameById = async(userId) => {
+    const response = await axios.get("http://localhost/users")
+    return response.data.filter(user => user.id === userId)
 }

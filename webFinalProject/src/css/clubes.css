@@ -167,7 +167,7 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    gap: 4rem;
+    gap: 1rem;
 
     border-radius: 20px;
     width: 80%;
@@ -185,6 +185,22 @@
     gap: 2rem;
     width: 100%;
 }
+
+.club2 {
+  background-color: #fff;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  gap: 2rem;
+  width: 100%;
+}
+
+.club2 p{
+  width: 100%;
+} 
 
 /* diamond
  image */
@@ -260,7 +276,7 @@
     margin-top: 4px;
     border-radius: 20px;
     width: 80%;
-    margin-right: 5rem;
+    margin-right: 0rem;
 
 }
 
@@ -271,7 +287,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 1rem;
+    padding: 2rem;
     gap: 2rem;
     width: 100%;
 }
@@ -295,12 +311,41 @@
   justify-content: center;
   align-items: center;
   padding: 2rem;
-  width: 20rem;
+  width: 100%;
   gap: 1rem;
 }
 
 .text-club-container {
    width: 100%;
+   display: flex;
+   gap: 2rem;
+}
+
+.text-club-container2{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.text-club-container2 p{
+  margin: 0;
+}
+
+.text-club-container2 h3{
+  margin: 0;
+}
+
+.titol {
+width: max-content;
+}
+
+.div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1rem;
+    align-items: flex-start;
+    width: 100%;
 }
 
 .nav-left {
