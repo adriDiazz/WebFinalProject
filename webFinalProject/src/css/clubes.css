@@ -438,8 +438,10 @@
 }
 
 .titol {
-
+  font-size: medium;
+  width: 81px;
 }
+
 
 .flip-card {
   background-color: transparent;

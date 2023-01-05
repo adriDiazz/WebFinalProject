@@ -29,7 +29,7 @@ auth.onAuthStateChanged((user) => {
         let tlp = '';
         clubs.then(clubs => {
             clubs.forEach((club, index) => {
-                if (index > 3) {
+                if (index >= 3) {
                     return;
                 }
                 const myclub = getClubById(Number(club[0]))
