@@ -387,6 +387,7 @@
     padding: 2rem;
     gap: 2rem;
     width: 100%;
+    box-shadow: 0px 1px 5px 3px rgba(0,0,0,0.12);
 }
 
 .texxt {
@@ -448,7 +449,8 @@
   width: 300px;
   height: 200px;
   border-radius: 20px;
-  perspective: 1000px; /* Remove this if you don't want the 3D effect */
+  perspective: 1000px; 
+  /* Remove this if you don't want the 3D effect */
 }
 
 /* This container is needed to position the front and back side */
@@ -460,6 +462,7 @@
   transition: transform 0.8s;
   transform-style: preserve-3d;
   border-radius: 20px;
+  box-shadow: 0px 1px 5px 3px rgba(0,0,0,0.12);
 }
 
 /* Do an horizontal flip when you move the mouse over the flip box container */
