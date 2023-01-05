@@ -1,7 +1,10 @@
 import { auth } from "./firebase";
 import { signOut } from "firebase/auth";
 import { imgs } from "./constants";
-import { getAllClubs, getCategories, getClubById, getMostPopularClubs, getUsernameById, getRandomProfile} from "./services";
+import { getAllClubs, getCategories, getClubById, getMostPopularClubs, getUsernameById, getRandomProfile, getClubCategory} from "./services";
+import tippy from "tippy.js";
+
+
 
 
 auth.onAuthStateChanged((user) => {
@@ -13,7 +16,7 @@ auth.onAuthStateChanged((user) => {
             categories.forEach(category => {
                 tlp += `
                 <div class="category">
-                    <img src="${imgs[category.name]}" alt="">
+                    <img src="../assets/circle.svg" alt="">
                     <p>${category.name}</p>
                 </div>
                 `
@@ -40,9 +43,9 @@ auth.onAuthStateChanged((user) => {
                             <div class="text-club-container">
                                 
                                     <h3>${index + 1}º</h3>
-                                    ${index === 0 ? `<img src="../assets/descarga1.png" alt="" width="40px">` : ''}
-                                    ${index === 1 ? `<img src="../assets/descarga2.png" alt="" width="40px">` : ''}
-                                    ${index === 2 ? `<img src="../assets/descarga3.png" alt="" width="40px">` : ''}
+                                    ${index === 0 ? `<img src="../assets/descarga1.png" alt="" class="trophy">` : ''}
+                                    ${index === 1 ? `<img src="../assets/descarga2.png" alt="" class="trophy">` : ''}
+                                    ${index === 2 ? `<img src="../assets/descarga3.png" alt="" class="trophy">` : ''}
 
                                 <h3 class="negro titol">${info[0].name}</h3>
                             </div>
@@ -63,23 +66,37 @@ auth.onAuthStateChanged((user) => {
             let tlp = '';
             clubes.forEach(club => {
                 const username = getUsernameById(club.creator)
-                username.then(nombre => {
-                    console.log(nombre)
-                    tlp += `
-                    <div class="club2">
-                        <div class="picture">
+                const  category = getClubCategory(club.id)
+
+                category.then(category => {
+                    username.then(nombre => {
+                        tlp += `
+                            <div class="flip-card">
+                            <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                            <div class="picture">
                             <img src="${club.urlBanner}" alt="">
+                            <div class="text-club-container2">
+                                <h3>${club.name}</h3>
+                                <p>Created By: @ ${nombre[0].username}</p>
+                                <p>Category: ${category}</p>
+                            </div>
                         </div>
-                        <div class="text-club-container2">
-                            <h3>${club.name}</h3>
-                            <p>@ ${nombre[0].username}</p>
                         </div>
-                        <button class="btn-transparent">Follow</button>
-                    </div>
-                    `
-                    clubesContainer.innerHTML = tlp;
+                        <div class="flip-card-back">
+                            <p class="description">${club.description}</p>
+                            <button class="btn-transparent2" data-popover-target="#popover-target">Join</button>
+                            </div>
+                            </div>
+                        </div>
+                        `
+                        clubesContainer.innerHTML = tlp;
+                    })
                 })
+
             });
+            
+
             
         })
         

@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cluby</title>
     <link rel="stylesheet" href="../css/clubes.css">
+    <link rel="stylesheet" href="dist/popover.min.css" />
+
 </head>
 <body>
     <!-- <nav>
@@ -78,85 +80,45 @@
                                 <!-- <img src="../assets/add.svg" alt=""> -->
                             </div>
                             <div class="clubes-container">
-                                <div class="club">
+                                <div class="club2">
                                     <div class="picture">
-                                        <img src="../assets/profileImg1.jpeg" alt="">
+                                        <img src="${club.urlBanner}" alt="">
+                                        <div class="text-club-container2">
+                                        <h3>${club.name}</h3>
+                                        <p>@ ${nombre[0].username}</p>
                                     </div>
-                                    <div class="text-club-container">
-                                        <h3>Club 1</h3>
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae.</p>
                                     </div>
+            
                                     <button class="btn-transparent">Follow</button>
                                 </div>
             
-                                <div class="club">
+                                <div class="club2">
                                     <div class="picture">
-                                        <img src="../assets/profileImg2.webp" alt="">
+                                        <img src="${club.urlBanner}" alt="">
+                                        <div class="text-club-container2">
+                                        <h3>${club.name}</h3>
+                                        <p>@ ${nombre[0].username}</p>
                                     </div>
-                                    <div class="text-club-container">
-                                        <h3>Club 2</h3>
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae.</p>
                                     </div>
+            
                                     <button class="btn-transparent">Follow</button>
                                 </div>
             
-                                <div class="club">
+                                <div class="club2">
                                     <div class="picture">
-                                        <img src="../assets/profileImg3.png" alt="">
+                                        <img src="${club.urlBanner}" alt="">
+                                        <div class="text-club-container2">
+                                        <h3>${club.name}</h3>
+                                        <p>@ ${nombre[0].username}</p>
                                     </div>
-                                    <div class="text-club-container">
-                                        <h3>Club 3</h3>
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae.</p>
                                     </div>
+            
                                     <button class="btn-transparent">Follow</button>
                                 </div>
+                                
                             </div>
                         
                     </section>
-            
-                    <section>
-        
-                        <div class="recomended-top-container">
-                            <div class="texxt">
-                                <h2>My clubs</h2>
-                                <img src="../assets/add.svg" alt="">
-                            </div>
-                            <div class="recomended-container">
-                                <div class="recomended">
-                                    <div class="picture">
-                                        <img src="../assets/profileImg1.jpeg" alt="">
-                                    </div>
-                                    <div class="text-club-container">
-                                        <h3>Club 1</h3>
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae.</p>
-                                    </div>
-                                    <button class="btn-transparent">Follow</button>
-                                </div>
-            
-                                <div class="recomended">
-                                    <div class="picture">
-                                        <img src="../assets/profileImg2.webp" alt="">
-                                    </div>
-                                    <div class="text-club-container">
-                                        <h3>Club 2</h3>
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae.</p>
-                                    </div>
-                                    <button class="btn-transparent">Follow</button>
-                                </div>
-            
-                                <div class="recomended">
-                                    <div class="picture">
-                                        <img src="../assets/profileImg3.png" alt="">
-                                    </div>
-                                    <div class="text-club-container">
-                                        <h3>Club 3</h3>
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae.</p>
-                                    </div>
-                                    <button class="btn-transparent">Follow</button>
-                                </div>
-                            </div>
-                        </div>
-                </section>
             </div>
 
             <div class="top-right-container">
@@ -208,5 +170,7 @@
         
       </main>
     <script type="module" src="../js/clubes.js"></script>
+    
+    <script src="dist/popover.min.js"></script>
 </body>
 </html>

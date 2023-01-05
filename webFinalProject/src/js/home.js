@@ -1,6 +1,6 @@
 import { auth } from "./firebase";
 import { signOut } from "firebase/auth";
-import { addClub, editClub } from "./services"
+import { addClub, editClub, getCategoryIdByName, setCategoryToClub } from "./services"
 import { getCreatedClubs, getJoinedClubs, getRandomProfile , getClubUsers} from "./services"
 
 
@@ -377,6 +377,9 @@ let profileImg
 
 modalOpen.addEventListener('click', () => {
     modal.style.display = 'block'
+
+    console.log(select.value)
+
     const profiles = document.querySelector('.profiles')
     const randomProfile1 = getRandomProfile();
     const randomProfile2 = getRandomProfile();
@@ -421,6 +424,8 @@ const nameInput = document.querySelector('.name')
 const descriptionInput = document.querySelector('.description')
 const discordInput = document.querySelector('.discord')
 const createBtn = document.querySelector('.createBtn')
+const select = document.querySelector('.select')
+
 
 createBtn.addEventListener('click', () => {
     const name = nameInput.value
@@ -442,11 +447,26 @@ createBtn.addEventListener('click', () => {
         }
 
         const saveClub = addClub(club, auth.currentUser.uid, "username")
-        if (saveClub) {
-            alert('Club created')
-            modal.style.display = 'none'
-            window.location.reload()
-        }
+        saveClub.then((data) => {
+            console.log(data)
+            if (data.response) {
+                const selectedCategory = select.value
+                const categryId = getCategoryIdByName(selectedCategory)
+                categryId.then((data2) => {
+                    console.log(data2[0].id)
+                    const posted = setCategoryToClub(Number(data.club_id), data2[0].id)
+                    alert('Club created')
+                    modal.style.display = 'none'
+                    setTimeout(() => {
+                        window.location.reload()
+                    }, 500)
+                })
+            }
+        })
+
+
+
+        
     }
 })
 

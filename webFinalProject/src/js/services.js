@@ -4,7 +4,7 @@ export const addClub = async(club, id, username) => {
     const response = await axios.post("http://localhost/products", club)
     const response2 = await axios.post("http://localhost/userclub", {club_id: response.data.id, user_id: id, username: username})
 
-    return response2.status === 201
+    return {response: response.status === 201, club_id: response.data.id}
 }   
 
 export const editClub = async(club, id) => {
@@ -96,4 +96,26 @@ export const getAllClubs = async() => {
 export const getUsernameById = async(userId) => {
     const response = await axios.get("http://localhost/users")
     return response.data.filter(user => user.id === userId)
+}
+
+export const setCategoryToClub = async(clubId, categoryId) => {
+    const response = await axios.post("http://localhost/categoryclub", {club_id: clubId, category_id: categoryId})
+    return response.status === 201
+}
+
+export const getCategoryIdByName = async(categoryName) => {
+    const response = await axios.get("http://localhost/category")
+    return response.data.filter(category => category.name === categoryName)
+}
+
+export const getClubCategory = async(clubId) => {
+    const response = await axios.get("http://localhost/categoryclub")
+    const category = response.data.filter(category => category.club_id === clubId && category.category_id !== null)
+    const categoryId = category[0].category_id
+
+
+    const response2 = await axios.get("http://localhost/category")
+    const category2 = response2.data.filter(category => category.id === categoryId)
+    console.log(category2[0].name)
+    return category2[0].name
 }

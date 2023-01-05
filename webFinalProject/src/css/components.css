@@ -66,6 +66,22 @@ a2 {
     cursor: pointer;
   }
 
+  .btn-transparent2 {
+    background-color: transparent;
+    color: #fff;
+    border: 1px solid #fff;
+    border-radius: var(--btnRadius);
+    padding: 0.5rem 1rem;
+    font-family: 'Nexa-light';
+    font-size: 0.8rem;
+    cursor: pointer;
+  }
+
+    .btn-transparent2:hover {
+        background-color: #fff;
+        color: #000;
+    }
+
   .btn-transparent:hover {
     background-color: #000;
     color: #fff;
