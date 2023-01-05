@@ -8,18 +8,20 @@
     require_once __DIR__ . "/src/ClubesController.php";
     require_once __DIR__ . "/src/UsersController.php";
     require_once __DIR__ . "/src/UserClubController.php";
+    require_once __DIR__ . "/src/CategoryController.php";
+    require_once __DIR__ . "/src/CategoryClubController.php";
 
 
     $parts = explode('/', $_SERVER['REQUEST_URI']);
 
 
-    if ($parts[1] != "products" && $parts[1] != "users" && $parts[1] != "userclub") {
+    if ($parts[1] != "products" && $parts[1] != "users" && $parts[1] != "userclub" && $parts[1] != "category" && $parts[1] != "categoryclub") {
         http_response_code(404);
         exit;
     } 
 
     $dsn = "mysql:host=localhost;port=4306;dbname=cluby;charset=utf8mb4";
-    $pdo = new PDO($dsn, "root", "", [
+    $pdo = new PDO($dsn, "root", "root", [
         PDO::ATTR_EMULATE_PREPARES => false,
         PDO::ATTR_STRINGIFY_FETCHES => false
     ]);
@@ -41,6 +43,18 @@
     if ($parts[1] == "products") {
         $id = $parts[2] ?? null;
         $clubController = new ClubesController($pdo);
+        $clubController->processRequest($_SERVER['REQUEST_METHOD'], $id);
+    }
+
+    if ($parts[1] == "category") {
+        $id = $parts[2] ?? null;
+        $clubController = new CategoryController($pdo);
+        $clubController->processRequest($_SERVER['REQUEST_METHOD'], $id);
+    }
+
+    if ($parts[1] == "categoryclub") {
+        $id = $parts[2] ?? null;
+        $clubController = new CategoryclubController($pdo);
         $clubController->processRequest($_SERVER['REQUEST_METHOD'], $id);
     }
 
