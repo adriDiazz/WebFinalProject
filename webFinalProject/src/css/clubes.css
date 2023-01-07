@@ -299,6 +299,11 @@
   background-color: rgba(0,0,0,0.4); 
 }
 
+/* askModal */
+.askModal {
+  display: none;
+}
+
 .modal-container {
   background-color: var(--white);
   margin: 10% auto; 

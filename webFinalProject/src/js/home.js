@@ -1,7 +1,8 @@
 import { auth } from "./firebase";
 import { signOut } from "firebase/auth";
-import { addClub, editClub, getCategoryIdByName, setCategoryToClub } from "./services"
+import { addClub, deleteClub, deleteUserFromClub, editClub, getCategoryIdByName, setCategoryToClub } from "./services"
 import { getCreatedClubs, getJoinedClubs, getRandomProfile , getClubUsers} from "./services"
+import axios from "axios";
 
 
 auth.onAuthStateChanged((user) => {
@@ -94,8 +95,18 @@ auth.onAuthStateChanged((user) => {
                         console.log(infoBtn)
                         infoBtn.addEventListener('click', () => {
                             clubContainer.innerHTML = `
-                            <div class="content-container">
-                            
+
+                            <div class="askModal">
+                            <div class="askModal-content">
+                                <p>Are you sure you want to leave this club?</p>
+                                <div class="askModal-btns">
+                                    <button class="btn-black yes-btn">Yes</button>
+                                    <button class="btn-black no-btn">No</button>
+                                </div>
+                            </div>
+                        </div>
+
+                            <div class="content-container">                            
                                 <div class="club-info-container">
                                     <div class="btn-info-container">
                                         <button class="btn-black edit-btn">Edit</button>
@@ -155,7 +166,27 @@ auth.onAuthStateChanged((user) => {
                             })
 
                             const deleteBtn = document.querySelector('.delete-btn')
+                            const askModal = document.querySelector('.askModal')
+
                             deleteBtn.addEventListener('click', () => {
+                                //const deleteClubResult = deleteUserFromClub(Number(club.id), user.uid)
+                                askModal.classList.add('activao')
+                                const yesBtn = document.querySelector('.yes-btn')
+                                const noBtn = document.querySelector('.no-btn')
+
+                                yesBtn.addEventListener('click', () => {
+                                    const deleteClubResult = deleteClub(Number(club.id))
+                                    deleteClubResult.then((result) => {
+                                        setTimeout(() => {
+                                            window.location.reload()
+                                        }, 1000)
+                                    })
+                                })
+
+                                noBtn.addEventListener('click', () => {
+                                    askModal.classList.remove('activao')
+                                })
+
                                 
                             })
                         })
@@ -265,10 +296,19 @@ auth.onAuthStateChanged((user) => {
                         console.log(infoBtn)
                         infoBtn.addEventListener('click', () => {
                             clubContainer.innerHTML = `
+                            <div class="askModal">
+                                <div class="askModal-content">
+                                    <p>Are you sure you want to leave this club?</p>
+                                    <div class="askModal-btns">
+                                        <button class="btn-black yes-btn">Yes</button>
+                                        <button class="btn-black no-btn">No</button>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="content-container">
                                 <div class="club-info-container">
                                     <div class="btn-info-container">
-                                        <button class="btn-black edit-btn">Edit</button>
+                                        
                                     </div>
                                     <h2 class="title">${club.name}</h2>
                                     <p>${club.description}</p>
@@ -285,48 +325,28 @@ auth.onAuthStateChanged((user) => {
                             <div/>
                             `
 
-                            const editBtn = document.querySelector('.edit-btn')
-                            editBtn.addEventListener('click', () => {
-                                clubContainer.innerHTML = `
-                                <div class="form-container editable">
-                                    <h2>Edit club</h2>
-                                    <form class="edit-form">
-                                            <label for="cname" class="label"><input type="text" id="cname" name="cname" placeholder="Club name"></label>
-                                            <label for="cdescription" class="label"><textarea id="cdescription" name="cdescription" placeholder="Description"></textarea></label>
-                                            <label for="cmeet" class="label"><textarea id="cmeet" name="cmeet" placeholder="Where we meet?"></textarea></label>
-                                            <label for="cdiscord" class="label"><input type="text" id="cdiscord" name="cdiscord" placeholder="Discord"></label>
-                                            <button type="button" class="btn-black put-edit-btn">Edit</button>
-                                    </form>                                    
-                                </div>
-                                `
+                            const deleteBtn = document.querySelector('.delete-btn')
+                            const askModal = document.querySelector('.askModal')
 
-                                const putEditBtn = document.querySelector('.put-edit-btn')
-                                console.log(document.querySelector('#cdescription').value)
-                                putEditBtn.addEventListener('click', () => {
-                                    let clubName = document.querySelector('#cname').value
-                                    let clubDescription = document.querySelector('#cdescription').value
-                                    let clubMeet = document.querySelector('#cmeet').value
-                                    let clubDiscord = document.querySelector('#cdiscord').value
-                                    clubName === '' ? clubName = club.name : ''
-                                    clubDescription === '' ? clubDescription = club.description : ''
-                                    clubMeet === '' ? clubMeet = club.meet : ''
-                                    clubDiscord === '' ? clubDiscord = club.discord : '' 
-                                    const editedClub = {
-                                        id: club.id,
-                                        name: clubName,
-                                        description: clubDescription,
-                                        meet: clubMeet,
-                                        discord: clubDiscord,
-                                    }
-                                    const editedClubResult = editClub(editedClub, auth.currentUser.uid)
-                                    if (editedClubResult) {
-                                        alert('Club edited')
+                            deleteBtn.addEventListener('click', () => {
+                                //const deleteClubResult = deleteUserFromClub(Number(club.id), user.uid)
+                                askModal.classList.add('activao')
+                                const yesBtn = document.querySelector('.yes-btn')
+                                const noBtn = document.querySelector('.no-btn')
+
+                                yesBtn.addEventListener('click', () => {
+                                    const deleteClubResult = deleteUserFromClub(Number(club.id), user.uid)
+                                    deleteClubResult.then((result) => {
                                         window.location.reload()
-                                    }
+                                    })
                                 })
 
+                                noBtn.addEventListener('click', () => {
+                                    askModal.classList.remove('activao')
+                                })
+
+                                
                             })
-                            
                         })
                     })
 

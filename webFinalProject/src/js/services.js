@@ -138,3 +138,18 @@ export const joinUserToClub = async (clubId, userId, username) => {
     console.log(response);
     return response.status;
 };
+
+export const deleteClub = async (club_id) => {
+    const response = await axios.delete('http://localhost/userclub', {
+        data: { club_id: club_id }
+    });
+    return response.status;
+};
+
+export const deleteUserFromClub = async (club_id, user_id) => {
+    const response = await axios.put('http://localhost/userclub', {
+        club_id: club_id,
+        user_id: user_id
+    });
+    return response.status;
+};
