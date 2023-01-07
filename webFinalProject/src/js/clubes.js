@@ -1,7 +1,7 @@
 import { auth } from "./firebase";
 import { signOut } from "firebase/auth";
 import { imgs } from "./constants";
-import { getAllClubs, getCategories, getClubById, getMostPopularClubs, getUsernameById, getRandomProfile, getClubCategory} from "./services";
+import { getAllClubs, getCategories, getClubById, getMostPopularClubs, getUsernameById, getRandomProfile, getClubCategory, setCategoryToClub, getCategoryIdByName, addClub, joinUserToClub} from "./services";
 import tippy from "tippy.js";
 
 
@@ -42,17 +42,33 @@ auth.onAuthStateChanged((user) => {
                             </div>
                             <div class="text-club-container">
                                 
-                                    <h3>${index + 1}º</h3>
+                                    <h3>${index + 1}º<span class="enanin">${info[0].id}</span></h3>
                                     ${index === 0 ? `<img src="../assets/descarga1.png" alt="" class="trophy">` : ''}
                                     ${index === 1 ? `<img src="../assets/descarga2.png" alt="" class="trophy">` : ''}
                                     ${index === 2 ? `<img src="../assets/descarga3.png" alt="" class="trophy">` : ''}
 
                                 <h3 class="negro titol">${info[0].name}</h3>
                             </div>
-                            <button class="btn-transparent">Follow</button>
+                            <button class="btn-transparent">Join</button>
                         </div>
                     `
                     topClubs.innerHTML = tlp;
+
+                    const joinButtons = document.querySelectorAll('.btn-transparent');
+                    joinButtons.forEach((button, index) => {
+                        button.addEventListener('click', () => {
+                            const clubId = button.previousElementSibling.children[0].children[0].textContent;
+                            const joined = joinUserToClub(Number(clubId), user.uid, 'username');
+                            console.log(clubId)
+                            joined.then((response) => {
+                                console.log(response)
+                                if (response === 200) {
+                                    btn.textContent = 'Joined';
+                                    btn.disabled = true;
+                                }
+                            })
+                        })
+                    })
 
                 })
                 
@@ -64,7 +80,7 @@ auth.onAuthStateChanged((user) => {
         
         clubes.then(clubes => {
             let tlp = '';
-            clubes.forEach(club => {
+            clubes.forEach((club, index) => {
                 const username = getUsernameById(club.creator)
                 const  category = getClubCategory(club.id)
 
@@ -84,21 +100,40 @@ auth.onAuthStateChanged((user) => {
                         </div>
                         </div>
                         <div class="flip-card-back">
+                            <span class="close">${club.id}</span>
                             <p class="description">${club.description}</p>
-                            <button class="btn-transparent2" data-popover-target="#popover-target">Join</button>
+                            <button class="btn-transparent2">Join</button>
                             </div>
                             </div>
                         </div>
                         `
                         clubesContainer.innerHTML = tlp;
+
+                        const joinBtns = document.querySelectorAll('.btn-transparent2');
+                        console.log(joinBtns)
+                        joinBtns.forEach((btn, index2) => {
+                            btn.addEventListener('click', () => {
+                                const clubId = btn.previousElementSibling.previousElementSibling.textContent;
+                                console.log(clubId)
+                                const joined = joinUserToClub(Number(clubId), user.uid, 'username');
+                                joined.then((response) => {
+                                    console.log(response)
+                                    if (response === 200) {
+                                        btn.textContent = 'Joined';
+                                        btn.disabled = true;
+                                    }
+                                })
+  
+                            })
+                        })
                     })
                 })
 
             });
-            
 
-            
         })
+
+
         
         
     } else {
@@ -171,7 +206,6 @@ modalOpen.addEventListener('click', () => {
                 })
                 profileImgs[index].classList.add('selected')
             }
-
         })
     })
 })
@@ -190,6 +224,9 @@ const nameInput = document.querySelector('.name')
 const descriptionInput = document.querySelector('.description')
 const discordInput = document.querySelector('.discord')
 const createBtn = document.querySelector('.createBtn')
+const select = document.querySelector('.select')
+
+
 
 createBtn.addEventListener('click', () => {
     const name = nameInput.value
@@ -211,11 +248,22 @@ createBtn.addEventListener('click', () => {
         }
 
         const saveClub = addClub(club, auth.currentUser.uid, "username")
-        if (saveClub) {
-            alert('Club created')
-            modal.style.display = 'none'
-            window.location.reload()
-        }
+        saveClub.then((data) => {
+            console.log(data)
+            if (data.response) {
+                const selectedCategory = select.value
+                const categryId = getCategoryIdByName(selectedCategory)
+                categryId.then((data2) => {
+                    console.log(data2[0].id)
+                    const posted = setCategoryToClub(Number(data.club_id), data2[0].id)
+                    alert('Club created')
+                    modal.style.display = 'none'
+                    setTimeout(() => {
+                        window.location.reload()
+                    }, 500)
+                })
+            }
+        })
     }
 })
 
