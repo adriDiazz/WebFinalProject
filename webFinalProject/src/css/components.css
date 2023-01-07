@@ -55,6 +55,19 @@ a2 {
     cursor: pointer;
   }
 
+  .delete-btn {
+    background-color: #B73E3E;
+    color: #fff;
+    border: none;
+    width: 20rem;
+    border-radius: var(--btnRadius);
+    padding: 0.5rem 1rem;
+    font-family: 'Nexa-light';
+    font-size: 0.8rem;
+    cursor: pointer;
+    margin-top: 3rem;
+  }
+
   .btn-transparent {
     background-color: transparent;
     color: #000;

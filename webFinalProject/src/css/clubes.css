@@ -194,6 +194,98 @@
   font-size: 0.1rem;
 }
 
+.container{
+  max-width: 450px;
+
+}
+
+.container .searchInput{
+  background: #fff;
+  border-radius: 40px;
+  position: relative;
+
+}
+
+.searchBar {
+  border-radius: 40px;
+}
+
+.searchInput input{
+  height: 45px;
+  width: 100%;
+  outline: none;
+  border: none;
+  border-radius: 40px;
+  font-size: 18px;
+  padding: 3px;
+  padding-left: 10px;
+
+}
+
+.searchInput.active input{
+  border-radius: 5px 5px 0 0;
+}
+
+.searchInput .resultBox{
+  padding: 0;
+  opacity: 0;
+  pointer-events: none;
+  max-height: 280px;
+  overflow-y: auto;
+}
+
+.searchInput.active .resultBox{
+  padding: 10px 8px;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.resultBox li{
+  list-style: none;
+  padding: 8px 12px;
+  display: none;
+  width: 100%;
+  cursor: default;
+  border-radius: 3px;
+}
+
+.searchInput.active .resultBox li{
+  display: block;
+}
+.resultBox li:hover{
+  background: #efefef;
+}
+
+.searchInput .icon{
+  position: absolute;
+  right: 9px;
+  top: 5px;
+  text-align: center;
+  line-height: 55px;
+  font-size: 20px;
+  color: #644bff;
+  cursor: pointer;
+}
+
+.lii {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.lii img {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.lii span {
+  font-size: 0.8rem;
+  font-family: 'Nexa-light';
+}
+
 .add-modal-top-container {
   display: none; 
   position: fixed; 
