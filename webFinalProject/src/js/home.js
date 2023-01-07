@@ -110,6 +110,7 @@ auth.onAuthStateChanged((user) => {
                                     <p>Wednesday: 16</p>
                                     <h3>Discord</h3>
                                     <a href="${club.discord}" class="a2" target=”_blank”>${club.discord}</a>
+                                    <button class="delete-btn">Delete</button>
                                 </div>
                             <div/>
                             `
@@ -151,6 +152,11 @@ auth.onAuthStateChanged((user) => {
                                         window.location.reload()
                                     }
                                 })
+                            })
+
+                            const deleteBtn = document.querySelector('.delete-btn')
+                            deleteBtn.addEventListener('click', () => {
+                                
                             })
                         })
                     })
@@ -274,6 +280,7 @@ auth.onAuthStateChanged((user) => {
                                     <p>Wednesday: 16</p>
                                     <h3>Discord</h3>
                                     <a href="${club.discord}" class="a2" target=”_blank”>${club.discord}</a>
+                                    <button class="delete-btn">Leave</button>
                                 </div>
                             <div/>
                             `

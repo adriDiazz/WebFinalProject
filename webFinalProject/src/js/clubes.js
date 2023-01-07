@@ -210,12 +210,70 @@ modalOpen.addEventListener('click', () => {
     })
 })
 
+const searchInput = document.querySelector(".searchInput");
+const input = searchInput.querySelector("input");
+const resultBox = searchInput.querySelector(".resultBox");
+
+const suggestions = getAllClubs();
+
+suggestions.then(suggestions => {
+
+    input.addEventListener("keyup", (e) => {
+        let userData = e.target.value; //user enetered data
+        let emptyArray = [];
+        if (userData) {
+            emptyArray = suggestions.filter((data)=>{
+                //filtering array value and user characters to lowercase and return only those words which are start with user enetered chars
+                return data.name.toLowerCase().includes(userData.toLowerCase()); 
+            });
+
+            emptyArray = emptyArray.map((data)=>{
+                // passing return data inside li tag
+
+                return data = `<li>
+                    <div class="lii">
+                        <img src="${data.urlBanner}" alt="">
+                        <span>${data.name}</span>
+                        <button class="btn-transparent">Join</button>
+                    </div>
+                </li>`;
+            });
+    
+            
+    
+            searchInput.classList.add("active"); //show autocomplete box
+            showSuggestions(emptyArray);
+            let allList = resultBox.querySelectorAll("li");
+            for (let i = 0; i < allList.length; i++) {
+                //adding onclick attribute in all li tag
+                allList[i].setAttribute("onclick", "select(this)");
+            }
+        }else{
+            searchInput.classList.remove("active"); //hide autocomplete box
+        }
+    });
+})
+
+
+
 window.addEventListener('click', (e) => {
     if (e.target === modal) {
         modal.style.display = 'none'
     }
 })
 
+
+// show suggestions for searchBar
+function showSuggestions(list){
+    let listData;
+    if(!list.length){
+        userValue = inputBox.value;
+        listData = '<li>'+ userValue +'</li>';
+    }else{
+        listData = list.join('');
+    }
+    resultBox.innerHTML = listData;
+}
 
 
 //ADD MODAL LOGIC
