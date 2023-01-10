@@ -1,5 +1,5 @@
 import { auth } from "./firebase";
-import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { addUserToDb } from "./services";
 import axios from "axios";
 import Toastify from 'toastify-js'
@@ -25,9 +25,22 @@ export const modal = () => {
         <input type="password" name="password" id="password" placeholder="Password" class="password"/>
         <button type="submit" class="btn-black loginModal">Log in</button>
         <p>Dont have an account yet? <a href=""><u>Register here</u></a></p>
-        <button class="btn-black"><img src="./assets/google.svg" alt="google"> Sign in with google</button>
+        <button class="btn-black google"><img src="./assets/google.svg" alt="google"> Sign in with google</button>
         `
 
+        const googleBtn = document.querySelector('.google')
+        const provider = new GoogleAuthProvider()
+        console.log(googleBtn)
+        googleBtn.addEventListener('click', (e) => {
+            e.preventDefault()
+            signInWithPopup(auth, provider).then(() => {
+                const modal = document.querySelector('.login-modal-top-container')
+                modal.style.display = 'none'
+                window.location = '../pages/homePage.html';
+            }).catch((e) => {
+                console.log('error')
+            })
+        })
         const loginBtn = document.querySelector('.loginModal');
         const email = document.querySelector('.email');
         const password = document.querySelector('.password');
@@ -72,8 +85,32 @@ export const modal = () => {
             <input type="password" name="password" id="passwordConfirm" placeholder="Confirm Password" class="password confirm"/>
             <button type="submit" class="btn-black RegisterModal">Register</button>
             <p>have an account? <a href=""><u>Log in</u></a></p>
-            <button class="btn-black"><img src="./assets/google.svg" alt="google"> Sign in with google</button>
+            <button class="btn-black google"><img src="./assets/google.svg" alt="google"> Sign in with google</button>
         `
+
+        const googleBtn = document.querySelector('.google')
+        const provider = new GoogleAuthProvider()
+        console.log(googleBtn)
+        googleBtn.addEventListener('click', (e) => {
+            e.preventDefault()
+            signInWithPopup(auth, provider).then((userCredential) => {
+                const modal = document.querySelector('.login-modal-top-container')
+                    const user = {
+                        "id": userCredential.user.uid.toString(),
+                        "username": userCredential.user.displayName,
+                        "created_at": new Date().toISOString(),
+                        "email": userCredential.user.email.toString()
+                    }
+
+                    const added = addUserToDb(user)
+                    if(added){
+                        modal.style.display = 'none'
+                    }
+            }).catch((e) => {
+                console.log('error')
+            })
+        })
+
         const registerBtn = document.querySelector('.RegisterModal');
         const email = document.querySelector('.email');
         const password = document.querySelector('.password');
@@ -118,6 +155,8 @@ export const modal = () => {
                       }).showToast();                
                 });
         })
+
+        
     })
 
     window.addEventListener('click', (e) => {

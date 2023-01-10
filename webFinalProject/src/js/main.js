@@ -46,10 +46,7 @@ auth.onAuthStateChanged((user) => {
 
         const navMobileToggle = document.querySelector('.fa');
 
-        navMobileToggle.addEventListener('click', () => {
-            const navMobile = document.querySelector('.mobile-nav-container');
-            navMobile.classList.toggle('active');
-        })
+
     }
 });
 
