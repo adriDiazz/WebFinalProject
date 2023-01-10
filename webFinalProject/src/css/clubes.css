@@ -201,13 +201,14 @@
 
 .container .searchInput{
   background: #fff;
-  border-radius: 40px;
+  border-radius: 5px;
   position: relative;
+  border-radius: 40px;
 
 }
 
 .searchBar {
-  border-radius: 40px;
+
 }
 
 .searchInput input{
@@ -215,15 +216,16 @@
   width: 100%;
   outline: none;
   border: none;
-  border-radius: 40px;
+
   font-size: 18px;
   padding: 3px;
   padding-left: 10px;
+  border-radius: 40px;
 
 }
 
 .searchInput.active input{
-  border-radius: 5px 5px 0 0;
+
 }
 
 .searchInput .resultBox{
@@ -270,10 +272,11 @@
 .lii {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   gap: 0.5rem;
   cursor: pointer;
+  padding: 0 1rem;
 }
 
 .lii img {

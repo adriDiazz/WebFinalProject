@@ -94,6 +94,8 @@ auth.onAuthStateChanged((user) => {
                         const infoBtn = document.querySelector('.info-btn')
                         console.log(infoBtn)
                         infoBtn.addEventListener('click', () => {
+                            const members = document.querySelector('.members-top-container')
+                            members.style.display = 'none'
                             clubContainer.innerHTML = `
 
                             <div class="askModal">
@@ -206,7 +208,6 @@ auth.onAuthStateChanged((user) => {
         //getting the joined clubs
         const joinedClubsContainer = document.querySelector('.joined-clubs-contaiener')
         const no = document.querySelector('.no')
-        console.log(user.uid)
         const joinedclubs = getJoinedClubs(user.uid);
         joinedclubs.then((clubs) => {
             console.log(clubs)
@@ -259,7 +260,7 @@ auth.onAuthStateChanged((user) => {
                                 <img src="../assets/face.svg" alt="">
                                 <div class="member-info">
                                     <p>${user.username}</p>
-                                    <p class="role">President</p>
+                                    <p class="role">${user.id === club.creator ? 'President' : 'Member'}</p>
                                 </div>
                             </div>
                             `
@@ -295,6 +296,8 @@ auth.onAuthStateChanged((user) => {
                         const infoBtn = document.querySelector('.info-btn')
                         console.log(infoBtn)
                         infoBtn.addEventListener('click', () => {
+                            const members = document.querySelector('.members-top-container')
+                            members.style.display = 'none'
                             clubContainer.innerHTML = `
                             <div class="askModal">
                                 <div class="askModal-content">
