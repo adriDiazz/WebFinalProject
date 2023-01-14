@@ -63,7 +63,7 @@ a2 {
     border-radius: var(--btnRadius);
     padding: 0.5rem 1rem;
     font-family: 'Nexa-light';
-    font-size: 0.8rem;
+    font-size: 0.8rem; 
     cursor: pointer;
     margin-top: 3rem;
   }

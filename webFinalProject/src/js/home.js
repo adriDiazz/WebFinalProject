@@ -1,13 +1,17 @@
-import { auth } from "./firebase";
+import { auth, db} from "./firebase";
 import { signOut } from "firebase/auth";
-import { addClub, deleteClub, deleteUserFromClub, editClub, getCategoryIdByName, setCategoryToClub } from "./services"
+//import { collection, addDoc, getDoc, onSnapshot, getDocs, orderBy, FieldValue, Firestore, Timestamp, setDoc, doc } from "firebase/firestore";
+import { ref, set, onChildAdded, onValue, get, push, } from "firebase/database";
+import { addClub, deleteClub, deleteUserFromClub, editClub, getCategoryIdByName, getUsernameById, setCategoryToClub } from "./services"
 import { getCreatedClubs, getJoinedClubs, getRandomProfile , getClubUsers} from "./services"
 import axios from "axios";
+
 
 
 auth.onAuthStateChanged((user) => {
     if (user) {
         //Getting the created clubs
+
         console.log(user)
         const clubsContainer = document.querySelector('.myclubs-clubs-contaiener')
         const myclubs = getCreatedClubs(user.uid);
@@ -58,7 +62,7 @@ auth.onAuthStateChanged((user) => {
                                 <img src="../assets/face.svg" alt="">
                                 <div class="member-info">
                                     <p>${user.username}</p>
-                                    <p class="role">President</p>
+                                    <p class="role">${user.id === club.creator ? 'President' : 'Member'}</p>
                                 </div>
                             </div>
                             `
@@ -73,10 +77,12 @@ auth.onAuthStateChanged((user) => {
                             </div>
 
                             <div class="chat-container">
+                                <div class="messages">
 
+                                </div>
                             </div>
                             <div class="input-container">
-                                <input type="text" name="message" id="message" placeholder="Type a message" class="message"/>
+                                <input type="text" name="message" id="message" placeholder="Type a message" class="message-input"/>
                                 <button type="submit" class="btn-black send-btn">Send</button>
                             </div>
                         
@@ -90,7 +96,63 @@ auth.onAuthStateChanged((user) => {
                         </div>
                     </div>
                         `
+
+
                         const clubContainer = document.querySelector('.club-container')
+                        const messageInput = document.querySelector('.message-input')
+                        const sendBtn = document.querySelector('.send-btn')
+                        const messages = document.querySelector('.messages')
+
+                        const dbReg = ref(db, `message-${club.id}`);
+
+                        // const getAllMessages = get(dbReg).then((snapshot) => {
+
+                        // });
+
+                        sendBtn.addEventListener('click', () => {
+                            const date = new Date()
+                            getUsernameById(user.uid).then((user) => {
+                                push(dbReg,  {
+                                    message: messageInput.value,
+                                    user: user[0].username,
+                                    user_id: user.uid,
+                                    club: club.id,
+                                    timestamp: new Date()
+                                }).then(() => {
+                                    messageInput.value = ''
+                                })
+                            })
+
+                            
+                        })
+
+                        // get(dbReg).then((snapshot) => {
+                        //     const data = snapshot.val()
+                        //     Object.keys(data).forEach((key) => {
+                        //         const tpl = `
+                        //         <div class="message">
+                        //             <p>${data[key].message}</p>
+                        //             <p>${data[key].user}</p>
+                        //         </div>
+                        //         `
+                        //         messages.innerHTML += tpl
+                        //     })
+                        // });
+
+  
+                        onChildAdded(dbReg, (snapshot) => {
+                            const data = snapshot.val()
+                            
+                            const tpl = `
+                            <div class="message">
+                                <p>${data.message}</p>
+                                <span class="usernamee">@${data.user}</span>
+                            </div>
+                            `
+                            messages.innerHTML += tpl
+                        });
+
+
                         const infoBtn = document.querySelector('.info-btn')
                         console.log(infoBtn)
                         infoBtn.addEventListener('click', () => {
@@ -275,10 +337,12 @@ auth.onAuthStateChanged((user) => {
                             </div>
 
                             <div class="chat-container">
+                                <div class="messages">
 
+                                </div>
                             </div>
                             <div class="input-container">
-                                <input type="text" name="message" id="message" placeholder="Type a message" class="message"/>
+                                <input type="text" name="message" id="message" placeholder="Type a message" class="message-input"/>
                                 <button type="submit" class="btn-black send-btn">Send</button>
                             </div>
                         
@@ -292,6 +356,100 @@ auth.onAuthStateChanged((user) => {
                         </div>
                     </div>
                         `
+
+
+                        //firebase chat code
+                        const messageInput = document.querySelector('.message-input')
+                        const sendBtn = document.querySelector('.send-btn')
+                        const messages = document.querySelector('.messages')
+
+                        const dbReg = ref(db, `message-${club.id}`);
+                        
+                        sendBtn.addEventListener('click', () => {
+                            console.log(messageInput.value)
+                            getUsernameById(user.uid).then((user) => {
+                                push(dbReg,  {
+                                    message: messageInput.value,
+                                    user: user[0].username,
+                                    club: club.id,
+                                    timestamp: new Date()
+                                }).then(() => {
+                                    messageInput.value = ''
+                                })
+                            })
+
+                            
+                        })
+
+                        onChildAdded(dbReg, (snapshot) => {
+                            const data = snapshot.val()
+                            console.log(data)
+                            const tpl = `
+                            <div class="message">
+                                <p>${data.message}</p>
+                                <span class="usernamee">@${data.user}</span>
+                            </div>
+                            `
+                            messages.innerHTML += tpl
+                        });
+
+                        // getDocs(collection(db, `message-${club.id}`)).then((querySnapshot) => {
+                        //     let tpl = ''
+                        //     console.log(querySnapshot)
+                        //     const myData = querySnapshot.docs
+                            
+                        //     console.log(myData)
+                        //     const sortedByDate = myData.sort((a, b) => new Date(a.date) - new Date(b.date))
+                        //     console.log(sortedByDate)
+                        //     sortedByDate.forEach((doc) => {
+                        //         const data = doc.data()
+                        //             tpl += `
+                        //             <div class="message">
+                        //                 <p>${data.user}</p>
+                        //                 <p>${data.message}</p>
+                        //             </div>
+                        //             `
+                        //     });
+                        //     messages.innerHTML = tpl
+                        // });
+                        
+                        // onSnapshot(collection(db, `message-${club.id}`), (querySnapshot) => {
+                        //     let tpl = ''
+                        //     querySnapshot.forEach((doc) => {
+                        //         const data = doc.data()
+                        //             tpl += `
+                        //             <div class="message">
+                        //                 <p>${data.user}</p>
+                        //                 <p>${data.message}</p>
+                        //             </div>
+                        //             `
+                        //     });
+                        //     messages.innerHTML = tpl
+                        // });
+
+                        
+                        // onSnapshot(collection(db, `message-${club.id}`), (querySnapshot) => {
+                        //         let tpl = ''
+
+                        //         querySnapshot.forEach((doc) => {
+                        //             const data = doc.data()
+                        //                 tpl += `
+                        //                 <div class="message">
+                        //                     <p>${data.user}</p>
+                        //                     <p>${data.message}</p>
+                        //                 </div>
+                        //                 `
+                        //         });
+                        //         messages.innerHTML = tpl
+                            
+                        // });
+
+                        
+ 
+                    
+
+
+
                         const clubContainer = document.querySelector('.club-container')
                         const infoBtn = document.querySelector('.info-btn')
                         console.log(infoBtn)
@@ -462,9 +620,9 @@ createBtn.addEventListener('click', () => {
     const description = descriptionInput.value
     const discord = discordInput.value
     const banner = profileImg 
-
+    //#ff6961
     if (name === '' || description === '' || discord === '' || banner === undefined) {
-        alert('Please fill in all fields')
+        alert('Please fill all the fields')
     } else {
 
         const club = {
